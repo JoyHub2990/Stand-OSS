@@ -5406,6 +5406,7 @@ namespace Stand::hooks
 			return false;
 		}
 
+#if !BETTER_TO_HAVE_NO_DETECTIONS_THAN_FALSE_DETECTIONS
 		if (current_sync_type == rage::SyncType::CREATE
 			&& netObject->object_type == NET_OBJ_TYPE_PICKUP
 			)
@@ -5457,6 +5458,7 @@ namespace Stand::hooks
 				}
 			}
 		}
+#endif
 
 		__try
 		{
@@ -5474,6 +5476,9 @@ namespace Stand::hooks
 			return false;
 		}
 
+#if BETTER_TO_HAVE_NO_DETECTIONS_THAN_FALSE_DETECTIONS
+		return true;
+#else
 		if (current_sync_type == rage::SyncType::CONTROL)
 		{
 			sync_tally = EventTally(sync_src, FlowEvent::SYNCIN_CONTROL);
@@ -5484,6 +5489,7 @@ namespace Stand::hooks
 			sync_tally.applyReactionsIn();
 		}
 		return ret;
+#endif
 	}
 
 	[[nodiscard]] static bool process_entity_spawn_or_teleport(rage::netSyncTree* tree, rage::NetworkObjectType object_type)
@@ -5508,6 +5514,7 @@ namespace Stand::hooks
 		return ret;
 	}
 
+#if !BETTER_TO_HAVE_NO_DETECTIONS_THAN_FALSE_DETECTIONS
 	bool process_tree_for_tally(rage::netSyncTree* tree, rage::SyncType sync_type, rage::NetworkObjectType object_type, rage::ObjectId object_id, CEntity* ent)
 	{
 		bool ret = true;
@@ -6668,6 +6675,7 @@ namespace Stand::hooks
 
 		return ret;
 	}
+#endif
 
 	bool on_invalid_model_sync(rage::NetworkObjectType netObjectType, int32_t model)
 	{

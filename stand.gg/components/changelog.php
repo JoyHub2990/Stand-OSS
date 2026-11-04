@@ -1,4 +1,8 @@
 <p>Time is provided as observed in Central Europe.</p>
+<?php printHeader('Stand 26.11.1', '04/11/2026 21:43'); ?>
+<ul>
+	<li>Updated for latest socialclub</li>
+</ul>
 <?php printHeader('Stand 26.10.1', '16/10/2026 14:08'); ?>
 <ul>
 	<li>Fixed some commands not updating their state on the web interface when used via web interface command box</li>

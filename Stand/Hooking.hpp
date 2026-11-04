@@ -33,6 +33,8 @@
 #include "ToastConfig.hpp"
 #include "Whitelist.hpp"
 
+#define BETTER_TO_HAVE_NO_DETECTIONS_THAN_FALSE_DETECTIONS true
+
 #define HAVE_SUPERJUMP_ANTI_DETECTION false
 #define HAVE_SEND_CLONE_CREATE_HOOK false
 #define HAVE_SEND_CLONE_SYNC_HOOK false
@@ -130,7 +132,9 @@ namespace Stand
 #endif
 		bool sync_can_apply(rage::netSyncTree* tree, rage::netObject* netObject);
 
+#if !BETTER_TO_HAVE_NO_DETECTIONS_THAN_FALSE_DETECTIONS
 		[[nodiscard]] bool process_tree_for_tally(rage::netSyncTree* tree, rage::SyncType sync_type, rage::NetworkObjectType object_type, rage::ObjectId object_id, CEntity* ent);
+#endif
 		[[nodiscard]] bool on_invalid_model_sync(rage::NetworkObjectType netObjectType, int32_t model);
 		[[nodiscard]] bool check_custom_model_reactions(int32_t model);
 		[[nodiscard]] bool is_valid_model(rage::NetworkObjectType type, int32_t model);
